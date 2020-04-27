@@ -5,7 +5,7 @@ from .forms import InventoryAddForm, InventoryAddNewForm, ParagraphErrorList
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction, IntegrityError
 from .models import Materiel, Owner, Test
-import socket
+import socket, platform
 
 
 """class inventoryAddNew(CreateView):
@@ -70,7 +70,8 @@ def inventory_add(request):
             return render(request, 'inventory/confirm.html', context)
 
     else:
-        form = InventoryAddForm()
+        data = {'login': platform.node()}
+        form = InventoryAddForm(data)
 
     context['form'] = form
     context['errors'] = form.errors.items()
