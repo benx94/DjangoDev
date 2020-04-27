@@ -1,0 +1,37 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block styles %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br>
+            <h2>Enregistrer votre matériel</h2>
+            <br>
+            <p style="margin-bottom: 20px;"></p>
+            <form action="{% url 'inventory:inventory_addnew' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label>Saisir le numéro du matériel: </label>
+                    {{ form.machine }}
+                    <label>Saisir votre IP: </label>
+                    {{ form.ip }}
+                    <label>Saisir le login du propriétaire</label>
+                    {{ form.login }}
+                    <label>Nom</label>
+                    {{ form.nom }}
+                    <label>Prénom</label>
+                    {{ form.prenom }}
+                    <label>Téléphone</label>
+                    {{ form.telephone }}
+                </div>
+                <br>
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

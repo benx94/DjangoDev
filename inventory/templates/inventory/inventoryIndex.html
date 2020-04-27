@@ -1,0 +1,42 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block styles %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <br>
+            <h2>Liste des inventaires</h2>
+            <br>
+            {% if inventaires|length_is:"0" %}
+                <div >
+                  Palsambleu ! Nous n'avons trouvé aucun résultat à cette requête. Même pas de quoi se ronger la chique !
+                  Partez de nouveau à l'abordage !
+                </div>
+            {% else %}
+                {% for inventaire in inventaires %}
+                    <div >
+                        <h5>{{ inventaire.machine }} | {{inventaire.ip}} | {{ inventaire.login }} | {{inventaire.nom}} | {{ inventaire.prenom }} | {{inventaire.telephone}}</h5>
+                    </div>
+                    {% if forloop.counter|divisibleby:3 %}{% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if paginate %}
+              <nav aria-label="">
+                <ul>
+                  {% if inventaires.has_previous %}
+                      <li><a href="?page={{ inventaires.previous_page_number }}">Précédent</a></li>
+                  {% endif %}
+                  {% if inventaires.has_next %}
+                      <li><a href="?page={{ inventaires.next_page_number }}">Suivant</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

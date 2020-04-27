@@ -1,0 +1,21 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block styles %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <input type="submit" value="Enregistrer" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

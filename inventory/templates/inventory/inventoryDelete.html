@@ -1,0 +1,23 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block styles %}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <br>
+                <h5>Etes-vous sûr de vouloir supprimer le matériel {{ test.machine }}</h5>
+                <br>
+                <form action="{% url 'inventory:inventory_delete' test_id=testData.id %}" method="POST">
+                    {% csrf_token %}
+                    <button><a href="/inventory/materielIndex">NON</a></button>
+                    <button type="submit">OUI</button>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+{% endblock %}
